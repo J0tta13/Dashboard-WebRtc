@@ -10,7 +10,6 @@ client/
 ├── public/              # Public assets
 ├── src/                 # Source code
 │   ├── components/      # React components
-│   ├── hooks/           # Custom hooks
 │   ├── styles/          # CSS styles
 │   ├── App.jsx          # Main App component
 │   ├── main.jsx         # Entry point
@@ -29,7 +28,7 @@ The WebRTC client application establishes a peer-to-peer connection using WebRTC
 
 ### Key Features
 
-- Real-time video and audio communication
+- Real-time video
 - Peer-to-peer connection using WebRTC
 - React-based user interface
 
