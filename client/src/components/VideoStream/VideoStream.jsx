@@ -11,7 +11,7 @@ const VideoStream = () => {
     useEffect(() => {
         const checkCamera = async () => {
             try {
-                const response = await fetch('http://192.168.1.4:8000/api/check-camera');
+                const response = await fetch('http://172.16.16.72:8000/api/check-camera');
                 const data = await response.json();
                 setCameraAvailable(data.available);
                 setStatus(data.available ? 'Cámara detectada' : 'Cámara no disponible');
@@ -43,7 +43,7 @@ const VideoStream = () => {
                 ]
             });
 
-            ws.current = new WebSocket(`ws://192.168.1.4:8000/ws`);
+            ws.current = new WebSocket(`ws://172.16.16.72:8000/ws`);
 
             ws.current.onopen = async () => {
                 console.log('WebSocket abierto');

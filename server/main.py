@@ -4,6 +4,7 @@ from fastapi import FastAPI, WebSocket, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from aiortc import RTCPeerConnection, MediaStreamTrack, RTCSessionDescription, RTCIceCandidate
 from aiortc.contrib.media import MediaPlayer
+from av import VideoFrame
 import cv2
 import json
 import logging

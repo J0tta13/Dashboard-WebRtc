@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+aiortc
+opencv-python
+numpy
+json
+av
+os
+logging
+cv2
