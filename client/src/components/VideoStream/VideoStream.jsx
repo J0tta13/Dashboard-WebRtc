@@ -11,7 +11,8 @@ const VideoStream = () => {
     useEffect(() => {
         const checkCamera = async () => {
             try {
-                const response = await fetch('http://172.16.16.72:8000/api/check-camera');
+                // Cambiar la IP por la de red local
+                const response = await fetch('http://192.168.1.4:8000/api/check-camera');
                 const data = await response.json();
                 setCameraAvailable(data.available);
                 setStatus(data.available ? 'Cámara detectada' : 'Cámara no disponible');
@@ -42,8 +43,11 @@ const VideoStream = () => {
                     { urls: 'stun:stun.l.google.com:19302' },
                 ]
             });
+             // Añadir transceptor para recibir video
+            pc.current.addTransceiver('video', { direction: 'recvonly' }); 
 
-            ws.current = new WebSocket(`ws://172.16.16.72:8000/ws`);
+            // Cambiar la IP por la de tu red local
+            ws.current = new WebSocket(`ws://192.168.1.4:8000/ws`);
 
             ws.current.onopen = async () => {
                 console.log('WebSocket abierto');
@@ -60,17 +64,14 @@ const VideoStream = () => {
                     if (event.candidate) {
                         const candidate = {
                             candidate: event.candidate.candidate || "",
-                            sdpMid: event.candidate.sdpMid || null,
+                            sdpMid: event.candidate.sdpMid || "", // Ensure `sdpMid` is never null
                             sdpMLineIndex: event.candidate.sdpMLineIndex ?? 0
                         };
 
-                        console.log('Enviando candidato ICE:', candidate);
-                        if (ws.current.readyState === WebSocket.OPEN) {
-                            ws.current.send(JSON.stringify({
-                                type: 'candidate',
-                                candidate: candidate
-                            }));
-                        }
+                        ws.current.send(JSON.stringify({
+                            type: 'candidate',
+                            candidate: candidate
+                        }));
                     }
                 };
 
@@ -152,18 +153,20 @@ const VideoStream = () => {
     }, []);
 
     return (
-        <div className="video-stream">
-            <h1>Video Stream</h1>
-            <p>{status}</p>
-            <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                controls={false}
-                style={{ width: '640px', height: '480px', border: '1px solid black' }}
-            ></video>
+        <div className="flex flex-col items-center justify-center p-4 m-4 bg-white rounded-lg shadow-lg">
+            <h1 className="text-3xl font-semibold text-center text-blue-600 mb-4">Video Stream</h1>
+            <p className="text-lg text-gray-700 mb-6">{status}</p>
+            <div className="flex justify-center">
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    playsInline
+                    controls={false}
+                    className="w-[640px] h-[480px] border-2 border-gray-300 rounded-lg"
+                ></video>
+            </div>
         </div>
-    );
+    ); 
 };
 
 export default VideoStream;

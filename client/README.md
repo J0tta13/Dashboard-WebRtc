@@ -64,23 +64,8 @@ npm run dev
 
 This will start the Vite development server and open the application in your default web browser.
 
-### Building for Production
-
-To build the application for production, run:
-
-```bash
-npm run build
-```
-
-This will create a `dist` directory with the production build of the application.
-
-### Linting
-
-To lint the code using ESLint, run:
-
-```bash
-npm run lint
-```
+## Notes
+Asegúrate de actualizar la dirección IP con la correspondiente a tu red local en el componente VideoStream para garantizar que la conexión funcione correctamente.
 
 ## Connecting to the Server
 

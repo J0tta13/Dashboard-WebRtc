@@ -68,6 +68,11 @@ Webrtc/
     ```sh
     python main.py
     ```
+    **or**:
+    ```sh
+    uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ```
+
 
 6. **Access the Application**:
     Open your web browser and navigate to `https://<your-ip>:8000`.

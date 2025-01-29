@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AppLayout from './components/AppLayout';
-import WebRTCStream from './components/WebRTCStream/WebRTCStream';
 import HorizontalNavbar from './components/horizontalNavbar/HorizontalNavbar';
 
 import VideoStream from "./components/VideoStream/VideoStream";
