@@ -1,5 +1,3 @@
-
-
 # WebRTC Server
 
 This project is a WebRTC server implemented using FastAPI, aiortc, and OpenCV. It allows for real-time video streaming from a webcam to a web client.
@@ -81,6 +79,9 @@ Webrtc/
 
 - Ensure you have a valid SSL certificate (`key.pem` and `cert.pem`) in the server directory for HTTPS.
 - Modify the `uvicorn.run` parameters in `main.py` if you need to change the host or port.
+- Asegúrate de tener un certificado SSL válido.
+- Para desarrollo, si usas un certificado autofirmado, deberás importarlo en el almacén de certificados de tu sistema o navegador para evitar el error "SSLV3_ALERT_CERTIFICATE_UNKNOWN".
+- En producción, se recomienda utilizar un certificado firmado por una Autoridad de Certificación reconocida (ej. Let's Encrypt).
 
 ## License
 

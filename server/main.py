@@ -59,7 +59,7 @@ class OpenCVCameraTrack(MediaStreamTrack):
             raise RuntimeError("Error al capturar el frame")
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        video_frame = VideoFrame.from_ndarray(frame, format="rgb24")
+        video_frame = VideoFrame.from_ndarray(frame, format="yuv420p")
         video_frame.pts = pts
         video_frame.time_base = time_base
         return video_frame
@@ -131,7 +131,4 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True,
-        ssl_keyfile="./key.pem",
-        ssl_certfile="./cert.pem"
     )

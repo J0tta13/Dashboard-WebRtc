@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import AppLayout from './components/AppLayout';
 import HorizontalNavbar from './components/horizontalNavbar/HorizontalNavbar';
-
 import VideoStream from "./components/VideoStream/VideoStream";
+
+import WebRTCComponent from "./components/Webrtc/WebRTCComponent";
+
 
 function App() {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -23,7 +25,8 @@ function App() {
             <div className="main-content">
                 {/* Componente de transmisión WebRTC  <VideoStream />*/}
                 
-                <VideoStream />
+                {/*<VideoStream />*/}
+                <WebRTCComponent />
                
                 
             </div>
