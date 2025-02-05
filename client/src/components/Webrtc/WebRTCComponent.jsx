@@ -2,13 +2,18 @@ import React, { useRef, useState, useEffect } from "react";
 import io from "socket.io-client";
 
 // Change from HTTPS to HTTP if using a self-signed cert or for development
-const socket = io("http://192.168.1.4:5000", { transports: ["websocket"] });
+const socket = io("http://192.168.1.67:5000", { transports: ["websocket"] });
 
 const WebRTCComponent = () => {
   const [isConnected, setIsConnected] = useState(false);
   const videoRef = useRef(null);
   const peerRef = useRef(null);
   const ROOM_ID = "jetson-room";
+
+  // Función para enviar órdenes de movimiento de cámara
+  const handleMove = (direction) => {
+    socket.emit("move-camera", { direction, room: ROOM_ID });
+  };
 
   const initPeerConnection = () => {
     let candidateQueue = [];
@@ -140,12 +145,27 @@ const WebRTCComponent = () => {
           onError={(e) => console.error("🔥 Error de video:", e.target.error)}
         />
       </div>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 mb-4">
         {!isConnected ? (
           <button onClick={connect} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Conectar</button>
         ) : (
           <button onClick={disconnect} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Desconectar</button>
         )}
+      </div>
+      {/* Nuevos botones para mover la cámara */}
+      <div className="flex space-x-4">
+        <button onClick={() => handleMove("up")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          Up
+        </button>
+        <button onClick={() => handleMove("down")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          Down
+        </button>
+        <button onClick={() => handleMove("left")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          Left
+        </button>
+        <button onClick={() => handleMove("right")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          Right
+        </button>
       </div>
     </div>
   );
