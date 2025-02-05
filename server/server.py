@@ -4,12 +4,12 @@ from flask_cors import CORS
 import eventlet
 import ssl
 app = Flask(__name__)
-# Elimina el parámetro transports para permitir WebSocket
+
 socketio = SocketIO(
     app,
     cors_allowed_origins="*",
     async_mode="eventlet"  # Cambiado a eventlet para habilitar WebSocket
-    # Se ha removido transports para aceptar WebSocket
+    
 )
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -43,7 +43,7 @@ def handle_answer(data):
         temp_rooms[room] = {}
     temp_rooms[room]['answer'] = data['answer']
     print(f"✅ Respuesta recibida en {room}")
-    emit('answer', data['answer'], room=room, namespace='/')  # Se agrega namespace
+    emit('answer', data['answer'], room=room, namespace='/') 
 
 @socketio.on('candidate', namespace='/')
 def handle_candidate(data):
@@ -54,7 +54,7 @@ def handle_candidate(data):
         temp_rooms[room]['candidates'] = []
     temp_rooms[room]['candidates'].append(data['candidate'])
     print(f"📡 Candidato ICE recibido en {room}")
-    emit('candidate', data['candidate'], room=room, namespace='/')  # Se agrega namespace
+    emit('candidate', data['candidate'], room=room, namespace='/') 
     
 @socketio.on('join',  namespace='/')
 def handle_join(data):
@@ -76,7 +76,7 @@ def handle_leave(data):
     room = data.get('room')
     leave_room(room)
     if room in temp_rooms:
-        temp_rooms[room]['candidates'] = []  # Clear stored candidates for this room
+        temp_rooms[room]['candidates'] = []  
     print(f"👤 Cliente salió de {room}, limpiando candidatos.")
 
 if __name__ == '__main__':

@@ -1,4 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltUp } from "react-icons/fa";
+import { FaLongArrowAltDown } from "react-icons/fa";
+  
+
 import io from "socket.io-client";
 
 // Change from HTTPS to HTTP if using a self-signed cert or for development
@@ -146,17 +152,19 @@ const WebRTCComponent = () => {
         />
       </div>
       <div className="flex space-x-4">
-        <button onClick={() => handleMove("up")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-          Up
+        <button onClick={() => handleMove("up")} className="px-4 py-2 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700">
+          <FaLongArrowAltUp />
         </button>
         <button onClick={() => handleMove("down")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-          Down
+          <FaLongArrowAltDown />
+
         </button>
         <button onClick={() => handleMove("left")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-          Left
+          <FaLongArrowAltLeft />
         </button>
         <button onClick={() => handleMove("right")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-          Right
+          <FaLongArrowAltRight />
+
         </button>
       </div>
 
