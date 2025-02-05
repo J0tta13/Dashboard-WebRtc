@@ -1,6 +1,7 @@
 asyncio
 opencv-python
 python-socketio[asyncio]
+aiohttp
 aiortc
 av
 urllib3

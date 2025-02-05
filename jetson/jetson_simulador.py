@@ -97,7 +97,7 @@ def createPeerConnection():
 async def main():
     global pc
     try:
-        await sio.connect("http://192.168.1.67:5000", transports=["websocket"], namespaces=['/'], wait_timeout=3)
+        await sio.connect("http://192.168.1.9:5000", transports=["websocket"], namespaces=['/'], wait_timeout=3)
         await sio.emit("join", {"room": ROOM_ID}, namespace='/')
         
         pc = createPeerConnection()
