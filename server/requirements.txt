@@ -3,10 +3,4 @@ uvicorn
 aiortc
 opencv-python
 numpy
-json
 av
-os
-logging
-cv2
-time
-Fraction
