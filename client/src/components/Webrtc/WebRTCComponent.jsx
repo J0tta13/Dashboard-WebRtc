@@ -145,14 +145,6 @@ const WebRTCComponent = () => {
           onError={(e) => console.error("🔥 Error de video:", e.target.error)}
         />
       </div>
-      <div className="flex space-x-4 mb-4">
-        {!isConnected ? (
-          <button onClick={connect} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Conectar</button>
-        ) : (
-          <button onClick={disconnect} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Desconectar</button>
-        )}
-      </div>
-      {/* Nuevos botones para mover la cámara */}
       <div className="flex space-x-4">
         <button onClick={() => handleMove("up")} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
           Up
@@ -167,6 +159,15 @@ const WebRTCComponent = () => {
           Right
         </button>
       </div>
+
+      <div className="flex space-x-4 mb-4 mt-4">
+        {!isConnected ? (
+          <button onClick={connect} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Conectar</button>
+        ) : (
+          <button onClick={disconnect} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Desconectar</button>
+        )}
+      </div>
+      
     </div>
   );
 };
