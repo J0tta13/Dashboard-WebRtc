@@ -3,12 +3,12 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
-  
+
 
 import io from "socket.io-client";
 
 // Change from HTTPS to HTTP if using a self-signed cert or for development
-const socket = io("http://192.168.1.67:5000", { transports: ["websocket"] });
+const socket = io("http://172.16.13.110:5000", { transports: ["websocket"] });
 
 const WebRTCComponent = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -114,7 +114,7 @@ const WebRTCComponent = () => {
   const disconnect = () => {
     // Notify server to leave the room
     socket.emit("leave", { room: ROOM_ID });
-    
+
     if (peerRef.current) {
       peerRef.current.close();
       peerRef.current = null;
@@ -175,7 +175,7 @@ const WebRTCComponent = () => {
           <button onClick={disconnect} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Desconectar</button>
         )}
       </div>
-      
+
     </div>
   );
 };
